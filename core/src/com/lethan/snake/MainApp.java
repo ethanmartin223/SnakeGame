@@ -16,7 +16,7 @@ public class MainApp extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		shapeRender = new ShapeRenderer();
-		world = new World(20,20);
+		world = new World(20,20, 20f);
 	}
 
 	@Override
@@ -26,7 +26,6 @@ public class MainApp extends ApplicationAdapter {
 		batch.begin();
 
 		shapeRender.begin(ShapeRenderer.ShapeType.Filled);
-		for (int y=0; y<world.getHeight(); y++) {}
 		shapeRender.end();
 
 		batch.end();

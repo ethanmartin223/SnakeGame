@@ -7,13 +7,17 @@ public class Snake {
     private int x;
     private int y;
     private int length;
-    private List<Integer[]> snakeSegments = new ArrayList<>();
+    private boolean alive;
+    private List<Integer[]> snakeSegments;
+    private World world;
 
-
-    public Snake() {
+    public Snake(World world, int x, int y) {
         this.x = x;
         this.y = y;
+        this.alive = true;
+        this.world = world;
         this.length = 3;
+        this.snakeSegments = new ArrayList<>();
     }
 
     public int getX() {
@@ -25,11 +29,14 @@ public class Snake {
     }
 
     public void growLength() {
+        this.length += 1;
+    }
 
+    public boolean isAlive() {
+        return this.alive;
     }
 
     public void move(int toX,int toY) {
 
     }
-
 }
