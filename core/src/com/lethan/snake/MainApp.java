@@ -9,14 +9,18 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class MainApp extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	ShapeRenderer shapeRender;
+	ShapeRenderer shapeRenderer;
+
+	//game objects
 	World world;
+	Snake snake;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		shapeRender = new ShapeRenderer();
+		shapeRenderer = new ShapeRenderer();
 		world = new World(20,20, 20f);
+		snake = new Snake(world);
 	}
 
 	@Override
@@ -25,8 +29,7 @@ public class MainApp extends ApplicationAdapter {
 
 		batch.begin();
 
-		shapeRender.begin(ShapeRenderer.ShapeType.Filled);
-		shapeRender.end();
+		world.draw(shapeRenderer);
 
 		batch.end();
 	}
@@ -34,5 +37,6 @@ public class MainApp extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		shapeRenderer.dispose();
 	}
 }

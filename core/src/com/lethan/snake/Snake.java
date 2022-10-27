@@ -11,9 +11,9 @@ public class Snake {
     private List<Integer[]> snakeSegments;
     private World world;
 
-    public Snake(World world, int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Snake(World world) {
+        this.x = world.getWidth()/2;
+        this.y = world.getHeight()/2;
         this.alive = true;
         this.world = world;
         this.length = 3;
