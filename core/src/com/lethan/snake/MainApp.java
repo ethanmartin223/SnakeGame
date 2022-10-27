@@ -28,7 +28,6 @@ public class MainApp extends ApplicationAdapter {
 		ScreenUtils.clear(0, 0, 0, 1);
 
 		batch.begin();
-
 		world.draw(shapeRenderer);
 
 		batch.end();

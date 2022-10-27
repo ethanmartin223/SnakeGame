@@ -30,7 +30,7 @@ public class World{
                 if ((x+y)%2==0) {
                     shapeRenderer.setColor(50F, 205F, 50F, 1F);
                 } else {
-                    shapeRenderer.setColor(50F, 205F, 50F, 1F);
+                    shapeRenderer.setColor(50F, 205F, 50F,1F);
                 }
                 shapeRenderer.rect(x*this.squareDim, y*this.squareDim, this.squareDim, this.squareDim);
             }
