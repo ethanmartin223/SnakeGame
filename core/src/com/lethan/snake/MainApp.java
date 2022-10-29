@@ -25,10 +25,13 @@ public class MainApp extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		snake.move();
+
 		ScreenUtils.clear(0, 0, 0, 1);
 
 		batch.begin();
 		world.draw(shapeRenderer);
+		snake.renderSnake(shapeRenderer);
 
 		batch.end();
 	}

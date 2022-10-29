@@ -1,6 +1,12 @@
 package com.lethan.snake;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Snake {
@@ -10,6 +16,15 @@ public class Snake {
     private boolean alive;
     private List<Integer[]> snakeSegments;
     private World world;
+    private int[] direction;
+
+    private static final int[] UP = new int[] {0,1};
+    private static final int[] DOWN = new int[] {0,-1};
+    private static final int[] LEFT = new int[] {-1,0};
+    private static final int[] RIGHT = new int[] {1,0};
+
+    private float lastMoveDeltaTime;
+    private float secondsBetweenSnakeMove;
 
     public Snake(World world) {
         this.x = world.getWidth()/2;
@@ -18,6 +33,9 @@ public class Snake {
         this.world = world;
         this.length = 3;
         this.snakeSegments = new ArrayList<>();
+        snakeSegments.add(new Integer[] {x,y});
+        this.direction = new int[] {0,0};
+        this.secondsBetweenSnakeMove = .5F;
     }
 
     public int getX() {
@@ -36,7 +54,49 @@ public class Snake {
         return this.alive;
     }
 
-    public void move(int toX,int toY) {
+    public void move() {
+        this.getInput();
+        if (lastMoveDeltaTime >= secondsBetweenSnakeMove) {
+            lastMoveDeltaTime = 0;
+            this.x += this.direction[0];
+            this.y += this.direction[1];
+            snakeSegments.add(0,new Integer[] {x,y});
+            snakeSegments.remove(snakeSegments.size()-1);
+        }
+        else lastMoveDeltaTime += Gdx.graphics.getDeltaTime();
+    }
+
+    public void getInput() {
+        if(Gdx.input.isKeyPressed(Input.Keys.W)){
+            this.direction = Snake.UP;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.S)){
+            this.direction = Snake.DOWN;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            this.direction = Snake.LEFT;
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            this.direction = Snake.RIGHT;
+        }
+    }
+
+    public void renderSnake(ShapeRenderer shapeRenderer) {
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        float r = this.world.getSquareDim();
+
+        shapeRenderer.setColor(Color.DARK_GRAY);
+        for (Integer[] coordinate : this.snakeSegments) {
+            shapeRenderer.rect(coordinate[0]*r, coordinate[1]*r, r ,r);
+            System.out.print(Arrays.toString(coordinate)+", ");
+        }
+        System.out.println();
+        shapeRenderer.end();
 
     }
+
+    public void checkForCollision() {
+
+    }
+
 }
