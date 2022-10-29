@@ -96,7 +96,7 @@ public class Snake {
     }
 
     public void checkForCollision() {
-
+        return;
     }
 
 }
