@@ -33,9 +33,11 @@ public class Snake {
         this.world = world;
         this.length = 3;
         this.snakeSegments = new ArrayList<>();
-        snakeSegments.add(new Integer[] {x,y});
+        for (int j=0; j<this.length; j++) {
+            snakeSegments.add(new Integer[]{x, y});
+        }
         this.direction = new int[] {0,0};
-        this.secondsBetweenSnakeMove = .5F;
+        this.secondsBetweenSnakeMove = .25F;
     }
 
     public int getX() {
