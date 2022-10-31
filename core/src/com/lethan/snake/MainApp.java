@@ -14,6 +14,7 @@ public class MainApp extends ApplicationAdapter {
 	//game objects
 	World world;
 	Snake snake;
+	Apple apple;
 	
 	@Override
 	public void create () {
@@ -21,16 +22,17 @@ public class MainApp extends ApplicationAdapter {
 		shapeRenderer = new ShapeRenderer();
 		world = new World(20,20, 20f);
 		snake = new Snake(world);
+		apple = new Apple(world);
 	}
 
 	@Override
 	public void render () {
 		snake.move();
-
+		apple.checkIfEaten();
 		ScreenUtils.clear(0, 0, 0, 1);
-
 		batch.begin();
-		world.draw(shapeRenderer);
+		world.renderWorld(shapeRenderer);
+		apple.renderApple(shapeRenderer);
 		snake.renderSnake(shapeRenderer);
 		batch.end();
 	}

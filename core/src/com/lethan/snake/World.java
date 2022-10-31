@@ -7,6 +7,7 @@ public class World{
     private final int width;
     private final int height;
     private final float squareDim;
+    private Snake snake;
 
     public World(int width, int height, float squareDim) {
         this.width = width;
@@ -24,7 +25,7 @@ public class World{
 
     public float getSquareDim() {return this.squareDim;}
 
-    public void draw(ShapeRenderer shapeRenderer) {
+    public void renderWorld(ShapeRenderer shapeRenderer) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         for (int y = 0; y < this.height; y++) {
             for (int x = 0; x < this.width; x++) {
@@ -37,6 +38,14 @@ public class World{
             }
         }
         shapeRenderer.end();
+    }
+
+    public void setSnake(Snake snake) {
+        this.snake = snake;
+    }
+
+    public Snake getSnake() {
+        return snake;
     }
 
 

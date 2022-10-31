@@ -38,6 +38,7 @@ public class Snake {
         }
         this.direction = new int[] {0,0};
         this.secondsBetweenSnakeMove = .25F;
+        world.setSnake(this);
     }
 
     public int getX() {
@@ -56,14 +57,21 @@ public class Snake {
         return this.alive;
     }
 
+    public List<Integer[]> getSnakeSegments() {
+        return snakeSegments;
+    }
+
     public void move() {
         this.getInput();
         if (lastMoveDeltaTime >= secondsBetweenSnakeMove) {
             lastMoveDeltaTime = 0;
             this.x += this.direction[0];
             this.y += this.direction[1];
-            snakeSegments.add(0,new Integer[] {x,y});
-            snakeSegments.remove(snakeSegments.size()-1);
+            snakeSegments.add(0, new Integer[]{x, y});
+            if (snakeSegments.size() > this.length) {
+                snakeSegments.remove(snakeSegments.size() - 1);
+            }
+            checkForCollision();
         }
         else lastMoveDeltaTime += Gdx.graphics.getDeltaTime();
     }
@@ -96,7 +104,9 @@ public class Snake {
     }
 
     public void checkForCollision() {
-        return;
+        if (this.x < 0 || this.x > world.getWidth() || this.y < 0 || this.y > world.getHeight()) {
+            this.alive = false;
+        } else if (this)
     }
 
 }
