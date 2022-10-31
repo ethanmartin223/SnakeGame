@@ -90,9 +90,7 @@ public class Snake {
         shapeRenderer.setColor(Color.DARK_GRAY);
         for (Integer[] coordinate : this.snakeSegments) {
             shapeRenderer.rect(coordinate[0]*r, coordinate[1]*r, r ,r);
-            System.out.print(Arrays.toString(coordinate)+", ");
         }
-        System.out.println();
         shapeRenderer.end();
 
     }

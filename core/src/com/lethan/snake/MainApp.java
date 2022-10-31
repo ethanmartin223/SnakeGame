@@ -32,7 +32,6 @@ public class MainApp extends ApplicationAdapter {
 		batch.begin();
 		world.draw(shapeRenderer);
 		snake.renderSnake(shapeRenderer);
-
 		batch.end();
 	}
 	
