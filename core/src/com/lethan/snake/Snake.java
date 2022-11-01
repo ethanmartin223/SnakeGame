@@ -17,11 +17,14 @@ public class Snake {
     private List<Integer[]> snakeSegments;
     private World world;
     private int[] direction;
+    private int aliveTime;
 
     private static final int[] UP = new int[] {0,1};
     private static final int[] DOWN = new int[] {0,-1};
     private static final int[] LEFT = new int[] {-1,0};
     private static final int[] RIGHT = new int[] {1,0};
+    private static final int[] IDLE = new int[] {0,0};
+
 
     private float lastMoveDeltaTime;
     private float secondsBetweenSnakeMove;
@@ -38,6 +41,7 @@ public class Snake {
         }
         this.direction = new int[] {0,0};
         this.secondsBetweenSnakeMove = .25F;
+        this.aliveTime = 0;
         world.setSnake(this);
     }
 
@@ -72,6 +76,9 @@ public class Snake {
                 snakeSegments.remove(snakeSegments.size() - 1);
             }
             checkForCollision();
+            if (!Arrays.equals(this.direction, Snake.IDLE)) {
+                this.aliveTime += 1;
+            }
         }
         else lastMoveDeltaTime += Gdx.graphics.getDeltaTime();
     }
@@ -109,12 +116,11 @@ public class Snake {
             this.alive = false;
         }
         for (Integer[] coordinate : this.snakeSegments.subList(1,snakeSegments.size())) {
-            if (coordinate[0] == s.getX() && coordinate[1] == s.getY()) {
-                //this.alive = false;
+            if (coordinate[0] == s.getX() && coordinate[1] == s.getY() && this.aliveTime>0) {
+                this.alive = false;
                 break;
             }
         }
-        System.out.println(this.alive);
     }
 
 }

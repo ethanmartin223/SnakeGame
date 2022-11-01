@@ -29,12 +29,12 @@ public class MainApp extends ApplicationAdapter {
 	public void render () {
 		snake.move();
 		apple.checkIfEaten();
+
 		ScreenUtils.clear(0, 0, 0, 1);
-		batch.begin();
+
 		world.renderWorld(shapeRenderer);
 		apple.renderApple(shapeRenderer);
 		snake.renderSnake(shapeRenderer);
-		batch.end();
 	}
 	
 	@Override
