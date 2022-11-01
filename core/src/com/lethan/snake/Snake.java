@@ -104,9 +104,17 @@ public class Snake {
     }
 
     public void checkForCollision() {
-        if (this.x < 0 || this.x > world.getWidth() || this.y < 0 || this.y > world.getHeight()) {
+        Snake s = world.getSnake();
+        if (this.x < 0 || this.x >= world.getWidth() || this.y < 0 || this.y >= world.getHeight()) {
             this.alive = false;
-        } else if (this)
+        }
+        for (Integer[] coordinate : this.snakeSegments.subList(1,snakeSegments.size())) {
+            if (coordinate[0] == s.getX() && coordinate[1] == s.getY()) {
+                //this.alive = false;
+                break;
+            }
+        }
+        System.out.println(this.alive);
     }
 
 }
