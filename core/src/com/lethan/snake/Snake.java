@@ -25,6 +25,7 @@ public class Snake {
     private static final int[] RIGHT = new int[] {1,0};
     private static final int[] IDLE = new int[] {0,0};
 
+
     private float lastMoveDeltaTime;
     private float secondsBetweenSnakeMove;
 
